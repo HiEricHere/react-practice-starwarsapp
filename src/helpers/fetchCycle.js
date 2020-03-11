@@ -1,47 +1,51 @@
 import { useState, useEffect, useReducer } from 'react';
 
-const fetchReducer = (state, [type, payload]) => {
-  switch(type){
-    case 'FETCH_INIT':
-      return {
-        ...state,
-        status: 'loading',
-      }
-    case 'FETCH_RESOLVED':
-      return {
-        ...state,
-        status: 'resolved',
-        data: payload,
-      }
-    case 'FETCH_ERROR':
-      return {
-        ...state,
-        status: 'rejected',
-        error: payload,
-      }
-    default:
-      return state
+const generateFetchReducer = () => {
+  return (state, [type, payload]) => {
+    switch(type){
+      case 'FETCH_INIT':
+        return {
+          ...state,
+          status: 'loading',
+        }
+      case 'FETCH_RESOLVED':
+        return {
+          ...state,
+          status: 'resolved',
+          data: payload,
+        }
+      case 'FETCH_ERROR':
+        return {
+          ...state,
+          status: 'rejected',
+          error: payload,
+        }
+      default:
+        return state
+    }
   }
 }
 
-const defaultState = {
+const generateDefaultState = () => ({
   status: 'idle',
   error: null,
   data: null
-}
+})
 
-const componentFactory = (LoadingComp, ResolveComp, RejectComp, IdleComp) => status => {
-  switch(status){
-    case 'idle':
-      return IdleComp || LoadingComp
-    case 'loading':
-      return LoadingComp
-    case 'resolved':
-      return ResolveComp
-    case 'rejected':
-      return RejectComp
-    default:
-      return IdleComp || LoadingComp
+const generateComponentFactory = () => {
+  return (LoadingComp, ResolveComp, RejectComp, IdleComp) => status => {
+    switch(status){
+      case 'idle':
+        return IdleComp || LoadingComp
+      case 'loading':
+        return LoadingComp
+      case 'resolved':
+        return ResolveComp
+      case 'rejected':
+        return RejectComp
+      default:
+        return IdleComp || LoadingComp
+    }
   }
 }
 
@@ -71,4 +75,4 @@ const useFetch = (defaultUrl, fetchReducer, defaultState) => {
   return [state, setUrl]
 }
 
-export { fetchReducer, defaultState, componentFactory, useFetch }
+export { generateFetchReducer, generateDefaultState, generateComponentFactory, useFetch }
