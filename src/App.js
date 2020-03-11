@@ -1,17 +1,27 @@
-import React from 'react';
-// import Test from './components/Test';
-import People from './components/People'
+import React from 'react'
+import { BrowserRouter, Route } from 'react-router-dom'
+import CharactersContextProvider from './contexts/CharactersContext'
+import CharacterList from './components/CharacterList'
+import CharacterProfile from './components/CharacterProfile'
+
 
 import './App.css';
 
-const url = 'https://swapi.co/api/people/';
+const startUrl = 'https://swapi.co/api/people/';
 
 const App = () => {
   return (
-    <div id="app">
-      {/* <Test/> */}
-      <People startUrl={url}/>
-    </div>
+    <CharactersContextProvider>
+      <BrowserRouter>
+        <div id="app">
+          <Route exact path='/'>
+            <CharacterList startUrl={startUrl} />
+          </Route>
+          {/* <CharacterList startUrl={startUrl} /> */}
+          <Route path='/people/:id' component={CharacterProfile} />
+        </div>
+      </BrowserRouter>
+    </CharactersContextProvider>
   );
 }
 
