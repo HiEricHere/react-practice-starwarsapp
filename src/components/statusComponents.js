@@ -17,10 +17,11 @@ export const Loading = () => {
 // Add handwaving animation across the screen
 export const Rejected = () => {
   const { state } = useContext(CharactersContext)
+  const { error } = state
   return (
     <div>
       <p>"These aren't the droids you're looking for."</p>
-      <p>{state.error.message}</p>
+      <p>{error.message}</p>
     </div>
   )
 }

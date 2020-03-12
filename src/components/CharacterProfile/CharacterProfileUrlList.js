@@ -1,14 +1,14 @@
 import React, { useEffect, useState, useReducer, useContext } from 'react'
-import { CharactersContext } from '../contexts/CharactersContext'
-import { genericFetch, generateDefaultState, generateFetchReducer, generateComponentFactory } from '../helpers/fetchCycle'
+import { CharactersContext } from '../../contexts/CharactersContext'
+import { genericFetch, generateDefaultState, generateFetchReducer, generateComponentFactory } from '../../helpers/fetchCycle'
 
-const unloadedFetch = genericFetch()
+const fetchSomething = genericFetch()
 const defaultState = generateDefaultState()
 const fetchReducer = generateFetchReducer()
 const componentFactory = generateComponentFactory()
 
 const Loading = () => <li><p>Decrypting ...</p></li>
-const Resolved = ({results}) => results.map(item => (<li key={item}><p>{item || 'No results.'}</p></li>))
+const Resolved = ({results}) => results.map(item => (<li key={item}><p>{item}</p></li>))
 const Rejected = ({error}) => <li><p>"I have a bad feeling about this..." {error.message}</p></li>
 const displayFrom = componentFactory(Loading, Resolved, Rejected)
 
@@ -26,7 +26,7 @@ const CharacterProfileUrlList = ({list}) => {
     let relevant = true;
     dispatch(['FETCH_INIT'])
     
-    const fetchData = unloadedFetch(resolve, reject)
+    const fetchData = fetchSomething(resolve, reject)
     const fetchMaybes = list => list.map(fetchData)
 
     data && Promise.all(fetchMaybes(list))

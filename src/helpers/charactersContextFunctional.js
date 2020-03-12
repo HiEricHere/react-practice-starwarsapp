@@ -9,9 +9,9 @@ const getResultsTrack = compose(ping, getResults)
 
 const getCount = lens('count')
 const calcPageCount = c => Math.ceil(c/10)
-const getPageTotal = reducer([ping, calcPageCount, parseInt, getCount])
+const getPageTotal = reducer([calcPageCount, parseInt, getCount])
 
 const combineCountResults = (getPageTotal, getResults) => json => [getPageTotal(json), getResults(json)]
 const getFirstPageData = combineCountResults(getPageTotal, getResults)
 
-export { getFirstPageData, getResultsTrack }
+export { getFirstPageData, getResults, getResultsTrack }

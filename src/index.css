@@ -83,6 +83,10 @@ p {
   line-height: 1.25rem;
 }
 
+a, a:visited {
+  text-decoration: none;
+}
+
 #root {
   height: 100vh;
   background-color: #222;

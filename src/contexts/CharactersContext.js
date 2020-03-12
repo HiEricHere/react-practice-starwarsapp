@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useReducer, useState } from 'react'
 import { generateFetchReducer, generateDefaultState, genericFetch } from '../helpers/fetchCycle'
-import { getFirstPageData, getResultsTrack } from '../helpers/charactersContextFunctional'
+import { getFirstPageData, getResults } from '../helpers/charactersContextFunctional'
 
 export const CharactersContext = createContext()
 const fetchReducer = generateFetchReducer()
@@ -18,10 +18,10 @@ const CharactersContextProvider = props => {
   useEffect(() => {
     let relevant = true
     dispatch(['FETCH_INIT'])
-    console.log('useEffect has joined the chat.')
 
-    const fetchChars = fetchSomething(getResultsTrack, dispatchError)
+    const fetchChars = fetchSomething(getResults, dispatchError)
     const fetchCount = fetchSomething(getFirstPageData, dispatchError)
+    
     const fetchProcess = (baseUrl, promises = []) => {
       let page = 1
       return fetchCount(baseUrl + page)
@@ -42,8 +42,7 @@ const CharactersContextProvider = props => {
       fetchProcess(baseUrl)
         .then(results => {
           if (relevant) {
-            console.log('pong')
-            results = results.flat()
+            results = results.flat().map((result, idx) => ({...result, id: idx + 1}))
             localStorage.setItem('swChars', JSON.stringify(results))
             setData(results)
             dispatch(['FETCH_RESOLVED'])
@@ -56,10 +55,7 @@ const CharactersContextProvider = props => {
 
     data ? dispatch(['FETCH_RESOLVED']) : fetchAllChars(baseUrl)
 
-    return () => {
-      relevant = false
-      console.log('useEffect has left the chat.')
-    }
+    return () => relevant = false
   }, [data])
 
   return (
