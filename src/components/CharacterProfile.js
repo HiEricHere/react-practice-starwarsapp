@@ -9,12 +9,13 @@ const ListUrl = ({list}) => list.map(url => (<li key={url}>{url}</li>))
 
 const CharacterProfile = () => {
   const { id } = useParams()
-  const { state, ready } = useContext(CharactersContext)
-  const char = ready && state.data[id - 1]
+  const { state, data } = useContext(CharactersContext)
+  // const char = ready && state.data[id - 1]
+  const char = data && data[id - 1]
 
   return (
       <section>
-        {ready && state.data ?
+        {data ?
           <div>
             <Link to='/'>Back to List</Link>
             <h3>name: {char.name}</h3>

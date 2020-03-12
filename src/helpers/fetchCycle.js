@@ -75,4 +75,15 @@ const useFetch = (defaultUrl, fetchReducer, defaultState) => {
   return [state, setUrl]
 }
 
-export { generateFetchReducer, generateDefaultState, generateComponentFactory, useFetch }
+const genericFetch = () => {
+  return (resolve, reject) => url => {
+    return fetch(url)
+      .then(res => res.json())
+      .then(json => {
+        return resolve(json)
+      })
+      .catch(err => reject(err))
+  }
+}
+
+export { generateFetchReducer, generateDefaultState, generateComponentFactory, useFetch, genericFetch }

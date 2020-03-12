@@ -7,13 +7,13 @@ const componentFactory = generateComponentFactory()
 const displayFrom = componentFactory(Loading, CharacterList, Rejected)
 
 const UserView = () => {
-  const { state, ready } = useContext(CharactersContext)
+  const { state, data } = useContext(CharactersContext)
   const { status } = state
   const CurrentDisplay = displayFrom(status)
 
   return (
     <section>
-      { ready ? <CurrentDisplay /> : <CurrentDisplay /> }
+      { data ? <CurrentDisplay /> : <CurrentDisplay /> }
     </section>
   )
 }

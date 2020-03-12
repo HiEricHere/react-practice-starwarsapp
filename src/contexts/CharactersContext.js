@@ -1,58 +1,68 @@
 import React, { createContext, useEffect, useReducer, useState } from 'react'
-import { generateFetchReducer, generateDefaultState } from '../helpers/fetchCycle'
+import { generateFetchReducer, generateDefaultState, genericFetch } from '../helpers/fetchCycle'
+import { getFirstPageData, getResultsTrack } from '../helpers/charactersContextFunctional'
 export const CharactersContext = createContext()
 const fetchReducer = generateFetchReducer()
 const defaultState = generateDefaultState()
+const fetchSomething = genericFetch()
 
 const CharactersContextProvider = props => {
+  const maybeInfo = JSON.parse(localStorage.getItem('swChars'))
   const [state, dispatch] = useReducer(fetchReducer, defaultState)
-  const { status, data } = state
-  const [ready, setReady] = useState(false)
-  const url = 'https://swapi.co/api/people/'
+  const [data, setData] = useState(maybeInfo || null)
+
+  const baseUrl = 'https://swapi.co/api/people/?page='
+  const dispatchError = (err) => dispatch(['FETCH_ERROR', err])
 
   useEffect(() => {
     let relevant = true
     dispatch(['FETCH_INIT'])
-    console.log('Commander, we\'ve entered the useEffect.')
-    const fetchAllChars = (url, allChars = [], count = 0) => {
-      return fetch(url)
-        .then(res => res.json())
-        .then(json => {
-          let updatedChars = [...allChars, ...json.results]
-          let progress = Math.floor((updatedChars.length/json.count) * 100)
-          if (json.next && relevant) {
-            url = json.next
-            console.log(`Commander, scanning progress is at approximately ${progress}%.`)
-            return fetchAllChars(url, updatedChars, count = updatedChars.length)
-          } else {
-            console.log(`Commander, this sector has been scanned ${progress}%.`)
-            localStorage.setItem('swChars', JSON.stringify(updatedChars))
-            dispatch(['FETCH_RESOLVED', updatedChars])
-          }
+    console.log('useEffect has joined the chat.')
+
+    const fetchChars = fetchSomething(getResultsTrack, dispatchError)
+    const fetchCount = fetchSomething(getFirstPageData, dispatchError)
+    const fetchProcess = (baseUrl, promises = []) => {
+      let page = 1
+      return fetchCount(baseUrl + page)
+        .then(([totalPages, pageOneResults]) => {
+            promises.push(pageOneResults)
+            while (page < totalPages) {
+              page += 1
+              promises.push(fetchChars(baseUrl + page))
+            }
+            return Promise.all(promises)
         })
         .catch(err => {
-          console.log(`Commander, we were only able to scan ${count} objects.`)
           if (relevant) dispatch(['FETCH_ERROR', err])
         })
     }
 
-    const maybeList = localStorage.getItem('swChars')
-    maybeList ? dispatch(['FETCH_RESOLVED', JSON.parse(maybeList)]) : fetchAllChars(url)
-    console.log('peek', status, data)
+    const fetchAllChars = baseUrl => {
+      fetchProcess(baseUrl)
+        .then(results => {
+          if (relevant) {
+            console.log('pong')
+            results = results.flat()
+            localStorage.setItem('swChars', JSON.stringify(results))
+            setData(results)
+            dispatch(['FETCH_RESOLVED'])
+          }
+        })
+        .catch(err => {
+          if (relevant) dispatch(['FETCH_ERROR', err])
+        })
+    }
+
+    data ? dispatch(['FETCH_RESOLVED']) : fetchAllChars(baseUrl)
 
     return () => {
       relevant = false
-      console.log('Commander, we\'ve left the useEffect.', relevant)
+      console.log('useEffect has left the chat.')
     }
-  }, [])
-
-  useEffect(() => {
-    if (data) setReady(true)
-    console.log('d-data!', status, data)
-  }, [data, status])
+  }, [data])
 
   return (
-    <CharactersContext.Provider value={{state, ready}}>
+    <CharactersContext.Provider value={{state, data}}>
       {props.children}
     </CharactersContext.Provider>
   )
