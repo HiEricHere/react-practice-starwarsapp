@@ -11,6 +11,7 @@ const CharacterList = () => {
   const normalize = str => str.toLowerCase().replace(/[\s-]/g, '')
 
   useEffect(() => {
+    setList(data)
     setList(list => search.length 
       ? list.filter(({name}) => normalize(name).match(normalize(search)))
       : data)
