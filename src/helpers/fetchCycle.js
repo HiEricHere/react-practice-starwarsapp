@@ -79,9 +79,7 @@ const genericFetch = () => {
   return (resolve, reject) => url => {
     return fetch(url)
       .then(res => res.json())
-      .then(json => {
-        return resolve(json)
-      })
+      .then(json => resolve(json))
       .catch(err => reject(err))
   }
 }

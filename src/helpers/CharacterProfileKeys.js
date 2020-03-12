@@ -1,5 +1,3 @@
-import { compose } from './compose'
-
 // list of key attributes for character profiles
 
 const attributesKey = [
@@ -9,19 +7,12 @@ const attributesKey = [
   "skin_color",
   "eye_color",
   "birth_year",
-  "gender",
-  "homeworld",
-  "films",
-  "species",
-  "vehicles",
-  "starships",
+  "gender"
 ]
 
-const attributesToFetchKey = ["homeworld", "films", "species", "vehicles", "starships"]
+const attributesToFetchKey = ["films", "species", "vehicles", "starships"]
 
-const filterUnloaded = attrKeys => unfilteredObj => {
-  attrKeys.map(key => [key, unfilteredObj[key]])
-}
+const filterUnloaded = attrKeys => unfilteredObj => attrKeys.map(key => [key, unfilteredObj[key]])
 
 const filterAttr = filterUnloaded(attributesKey)
 const filterFetchList = filterUnloaded(attributesToFetchKey)
