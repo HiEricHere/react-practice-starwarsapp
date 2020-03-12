@@ -1,7 +1,8 @@
+import { compose } from './compose'
+
 // list of key attributes for character profiles
 
-const propFilter = [
-  "name",
+const attributesKey = [
   "height",
   "mass",
   "hair_color",
@@ -16,6 +17,13 @@ const propFilter = [
   "starships",
 ]
 
-const toFetch = ["homeworld", "films", "species", "vehicles", "starships"]
+const attributesToFetchKey = ["homeworld", "films", "species", "vehicles", "starships"]
 
-export { propFilter, toFetch }
+const filterUnloaded = attrKeys => unfilteredObj => {
+  attrKeys.map(key => [key, unfilteredObj[key]])
+}
+
+const filterAttr = filterUnloaded(attributesKey)
+const filterFetchList = filterUnloaded(attributesToFetchKey)
+
+export { filterAttr, filterFetchList }

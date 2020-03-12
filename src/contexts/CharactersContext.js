@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useReducer, useState } from 'react'
 import { generateFetchReducer, generateDefaultState, genericFetch } from '../helpers/fetchCycle'
 import { getFirstPageData, getResultsTrack } from '../helpers/charactersContextFunctional'
+
 export const CharactersContext = createContext()
 const fetchReducer = generateFetchReducer()
 const defaultState = generateDefaultState()

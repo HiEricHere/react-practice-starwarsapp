@@ -3,6 +3,7 @@ import { CharactersContext } from '../contexts/CharactersContext'
 import CharacterList from './CharacterList'
 import { Loading, Rejected } from './statusComponents'
 import { generateComponentFactory } from '../helpers/fetchCycle'
+
 const componentFactory = generateComponentFactory()
 const displayFrom = componentFactory(Loading, CharacterList, Rejected)
 
