@@ -50,33 +50,40 @@ table {
 /* Layout */
 @media all and (min-width: 900px){
   #root {
+    height: 90vh;
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
   }
   #app {
+    height: 90vh;
     grid-column: 2/3;
   }
+  
 }
 
 @media all and (min-width: 600px) and (max-width: 899px){
   #root {
+    height: 90vh;
     display: grid;
     grid-template-columns: 1fr 600px 1fr;
   }
   #app {
+    height: 90vh;
     grid-column: 2/3;
   }
 }
 
 @media all and (max-width: 599px){
-  
+  #app {
+    height: 100vh;
+  }
 }
 
 /* Styling Defaults */
 
 html {
   font-size: 16px;
-  /* font-family: Saira, Arial; */
+  font-family: Saira, Arial;
 }
 
 p {
@@ -87,13 +94,42 @@ a, a:visited {
   text-decoration: none;
 }
 
+h1 {
+  font-size: 1.8rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+h4 {
+  font-size: 1rem;
+}
+
+h5 {
+  font-size: 0.8rem;
+}
+
+body {
+  background-color: black;
+}
+
 #root {
-  height: 100vh;
   background-color: #222;
 }
 
 #app {
   background-color: black;
   color: rgb(74, 153, 255);
-  font-family: Arial;
+  /* font-family: Arial; */
 }
+
+/* darker */
+/* color: rgb(74, 153, 255); */
+/* ligher */
+/* color: rgb(30, 177, 235); */
+

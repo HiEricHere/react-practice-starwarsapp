@@ -1,0 +1,39 @@
+@media all and (min-width: 900px){
+  blockquote {
+    width: 50%;
+    margin: 2vw auto;
+    padding: 2vw;
+  }
+}
+
+@media all and (min-width: 600px) and (max-width: 899px){
+  blockquote {
+    width: 80%;
+    margin: 2vw auto;
+    padding: 2vw;
+  }
+}
+
+@media all and (max-width: 599px){
+  blockquote {
+    width: 70vw;
+    margin: 2vh auto;
+    padding: 2vh;
+  }
+}
+
+blockquote {
+  border: solid 2px rgb(30, 177, 235);
+  border-radius: 15px;
+  font-family: Arial;
+}
+
+.farewell {
+  display: grid;
+  grid-template-rows: auto;
+  row-gap: 1vw;
+}
+
+.farewell p:last-child {
+  text-align: right;
+}
