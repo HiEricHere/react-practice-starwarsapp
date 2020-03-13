@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { CharactersContext } from '../contexts/CharactersContext'
-import { Link } from 'react-router-dom'
 import CharacterView from './CharacterView'
 import { Loading, Rejected } from './statusComponents'
 import { generateComponentFactory } from '../helpers/fetchCycle'
