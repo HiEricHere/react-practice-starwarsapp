@@ -1,4 +1,5 @@
 // list of key attributes for character profiles
+import { normalizeKey } from './stringFormat'
 
 const attributesKey = [
   "height",
@@ -12,7 +13,8 @@ const attributesKey = [
 
 const attributesToFetchKey = ["species", "films", "vehicles", "starships"]
 
-const filterUnloaded = attrKeys => unfilteredObj => attrKeys.map(key => [key, unfilteredObj[key]])
+const filterUnloaded = attrKeys => unfilteredObj => 
+  attrKeys.map(key => [normalizeKey(key), unfilteredObj[key]])
 
 const filterAttr = filterUnloaded(attributesKey)
 const filterFetchList = filterUnloaded(attributesToFetchKey)
