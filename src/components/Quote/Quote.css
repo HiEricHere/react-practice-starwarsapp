@@ -1,5 +1,5 @@
 @media all and (min-width: 900px){
-  .quote {width: 50%;}
+  /* .quote {width: 50%;} */
   .quote > div {
     margin: 2vw auto;
     padding: 2vw 4vw;
@@ -11,7 +11,7 @@
 }
 
 @media all and (min-width: 600px) and (max-width: 899px){
-  .quote {width: 60%;}
+  /* .quote {width: 60%;} */
   .quote > div {
     margin: 2vw auto;
     padding: 2vw 4vw;
@@ -24,7 +24,7 @@
 
 @media all and (max-width: 599px){
   .quote {
-    width: 70vw;
+    /* width: 70vw; */
   }
   .quote > div {
     margin: 2vh auto;
@@ -43,7 +43,6 @@
 
 .quote > div {
   grid-row: 2/3;
-  width: 100%;
   border-top: solid 2px rgb(30, 177, 235);
   border-bottom: solid 2px rgb(30, 177, 235);
   display: grid;
@@ -52,14 +51,4 @@
 
 .quote > div > cite {
   justify-self: right;
-}
-
-.farewell {
-  display: grid;
-  grid-template-rows: auto;
-  row-gap: 1vw;
-}
-
-.farewell p:last-child {
-  text-align: right;
 }

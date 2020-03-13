@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { CharactersContext } from '../contexts/CharactersContext'
+import { CharactersContext } from '../../contexts/CharactersContext'
+
+import './CharacterList.css'
 
 const CharacterList = () => {
   const { data } = useContext(CharactersContext)
@@ -18,7 +20,7 @@ const CharacterList = () => {
   },[search, data])
 
   return (
-    <>
+    <section id="characterlist">
       <label>
         <h3>Search by name</h3>
         <input type="text" onChange={handleChange}/>
@@ -30,7 +32,7 @@ const CharacterList = () => {
           </li>
         )}
       </ul>
-    </>
+    </section>
   )
 }
 

@@ -37,7 +37,7 @@ const Quote = () => {
     author: 'Princess Leia Organa'},
     {quote: '"I am altering the deal, pray I don\'t alter it any further."',
     author: 'Darth Vader'},
-    {quote: '"WWWWWWWGGGGHHHRRRRW."', author: 'Chewie'},
+    {quote: '"WWWWWWWGGGGHHHRRRRW."', author: 'Chewbacca'},
     {quote: '"This deal is getting worse all the time."', author: 'Lando Calrissian'},
     {quote: '"HRONNK HRONNK ARK HRONNKK"', author: 'Sand Person'},
     {quote: '"Nooooooooooooooooo!"', author: 'Darth Vader'},
@@ -54,7 +54,7 @@ const Quote = () => {
   },[quotes])
 
   return (
-    <blockquote class="quote">
+    <blockquote className="quote">
       <div>
         <p>{quote.quote}</p>
         {quote.author ? <cite>- {quote.author}</cite> : null}

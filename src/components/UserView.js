@@ -14,8 +14,7 @@ const UserView = () => {
   const CurrentDisplay = displayFrom(status)
 
   return (
-    <section>
-      <Link to='/'>Home</Link>
+    <section id="userview">
       <CurrentDisplay />
     </section>
   )

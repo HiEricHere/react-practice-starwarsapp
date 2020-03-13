@@ -54,7 +54,6 @@ table {
     grid-template-columns: 1fr minmax(900px, 4fr) 1fr;
   }
   #app {
-    height: 90vh;
     grid-column: 2/3;
   }
 }
@@ -65,14 +64,13 @@ table {
     grid-template-columns: 1fr minmax(600px, 4fr) 1fr;
   }
   #app {
-    height: 90vh;
     grid-column: 2/3;
   }
 }
 
 @media all and (max-width: 599px){
   #app {
-    height: 100vh;
+    padding: 1vh;
   }
 }
 
@@ -89,17 +87,18 @@ p {
 
 a, a:visited {
   text-decoration: none;
+  color: rgb(255, 255, 134);
 }
 
-h1 {
+h1, .h1 {
   font-size: 1.8rem;
 }
 
-h2 {
+h2, .h2 {
   font-size: 1.5rem;
 }
 
-h3 {
+h3, .h3 {
   font-size: 1.25rem;
 }
 
@@ -107,7 +106,7 @@ h4 {
   font-size: 1rem;
 }
 
-h5 {
+h5, .h5 {
   font-size: 0.8rem;
 }
 
@@ -115,14 +114,9 @@ body {
   background-color: black;
 }
 
-#root {
-  background-color: #222;
-}
-
 #app {
   background-color: black;
   color: rgb(74, 153, 255);
-  overflow: scroll;
 }
 
 /* darker */

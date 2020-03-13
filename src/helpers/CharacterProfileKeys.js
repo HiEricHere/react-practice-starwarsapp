@@ -10,7 +10,7 @@ const attributesKey = [
   "gender"
 ]
 
-const attributesToFetchKey = ["films", "species", "vehicles", "starships"]
+const attributesToFetchKey = ["species", "films", "vehicles", "starships"]
 
 const filterUnloaded = attrKeys => unfilteredObj => attrKeys.map(key => [key, unfilteredObj[key]])
 
