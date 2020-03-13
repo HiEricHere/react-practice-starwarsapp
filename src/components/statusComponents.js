@@ -6,7 +6,7 @@ import { CharactersContext } from '../contexts/CharactersContext'
 // Add "blinking" on Decrypting data
 export const Loading = () => {
   return (
-    <div>
+    <div style={styles.status}>
       <p>"Many <span style={styles.strikethrough}>Bothans</span> rogues died to bring us this information..."</p>
       <p>Decrypting data ...</p>
     </div>
@@ -19,7 +19,7 @@ export const Rejected = () => {
   const { state } = useContext(CharactersContext)
   const { error } = state
   return (
-    <div>
+    <div style={styles.status}>
       <p>"These aren't the droids you're looking for."</p>
       <p>{error.message}</p>
     </div>
@@ -29,5 +29,14 @@ export const Rejected = () => {
 const styles = {
   strikethrough: {
     textDecoration: "line-through"
+  },
+  status: {
+    padding: '4vh',
+    margin: '4vh auto',
+    textAlign: 'center',
+    display: 'grid',
+    gridTemplateRows: 'auto',
+    justifyContent: 'center',
+    rowGap: '4vh',
   }
 }
