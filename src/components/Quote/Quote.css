@@ -1,44 +1,56 @@
 @media all and (min-width: 900px){
-  .quote {
-    width: 50%;
+  .quote {width: 50%;}
+  .quote > div {
     margin: 2vw auto;
     padding: 2vw 4vw;
-    row-gap: 1vw;
+    row-gap: 2vw;
   }
+  /* .quote > p {
+    text-align: justify;
+  } */
 }
 
 @media all and (min-width: 600px) and (max-width: 899px){
-  .quote {
-    width: 80%;
+  .quote {width: 60%;}
+  .quote > div {
     margin: 2vw auto;
     padding: 2vw 4vw;
-    row-gap: 1vw;
+    row-gap: 2vw;
   }
+  /* .quote > p {
+    text-align: justify;
+  } */
 }
 
 @media all and (max-width: 599px){
   .quote {
     width: 70vw;
+  }
+  .quote > div {
     margin: 2vh auto;
     padding: 2vh 4vh;
-    row-gap: 1vh;
+    row-gap: 2vh;
   }
 }
 
 .quote {
+  font-family: Arial;
+  height: 40vh;
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+  justify-content: center;
+}
+
+.quote > div {
+  grid-row: 2/3;
+  width: 100%;
   border-top: solid 2px rgb(30, 177, 235);
   border-bottom: solid 2px rgb(30, 177, 235);
-  /* border-radius: 15px; */
-  font-family: Arial;
   display: grid;
   grid-template-rows: auto;
 }
 
-.quote > p {
-  text-align: justify;
-}
-
-.quote > cite {
+.quote > div > cite {
   justify-self: right;
 }
 

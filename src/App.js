@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import CharactersContextProvider from './contexts/CharactersContext'
-import Home from './components/Home'
+import Home from './components/Home/Home'
 import UserView from './components/UserView'
 
 import './App.css';

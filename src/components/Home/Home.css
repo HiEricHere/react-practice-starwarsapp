@@ -1,0 +1,29 @@
+@media all and (min-width: 900px){
+  #home {
+    grid-template-columns: 2vw 1fr auto 1fr 2vw;
+    row-gap: 4vw;
+  }
+  #home > h1 {
+    grid-column: 3/4;
+  }
+  #home > *:not(h1) {
+    grid-column: 2/5;
+  }
+}
+
+@media all and (min-width: 600px) and (max-width: 899px){
+  #home {
+    row-gap: 4vw;
+  }
+}
+
+@media all and (max-width: 599px){
+  #home {
+    row-gap: 4vh;
+  }
+}
+
+#home {
+  display: grid;
+  grid-template-rows: repeat(2, auto) 40vh repeat(3, auto);
+}
