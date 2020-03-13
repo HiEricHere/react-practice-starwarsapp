@@ -10,34 +10,46 @@ const randomQuote = xs => xs[floorRandom(xs.length)]
 
 const Quote = () => {
   const quotes = [
-    '"Never tell me the odds!"',
-    '"Punch it, Chewie!"',
-    `"Uh, we had a slight weapons malfunction, 
+    {quote:'"Never tell me the odds!"', author: 'Han Solo'},
+    {quote:'"Punch it, Chewie!"', author:'Han Solo'},
+    {quote:`"Uh, we had a slight weapons malfunction, 
     but uh... everything's perfectly all right now. 
     We're fine. We're all fine here now, thank you. 
     Uh, how are you?"`,
-    '"I find your lack of faith disturbing."',
-    '"Search your feelings. You know it to be true."',
-    '"Do, or do not. There is no try."',
-    '"It\'s a trap!"',
-    '"That\'s no moon..."',
-    '"Great, kid. Don’t get cocky!"',
-    `"Hokey religions and ancient weapons are no 
+    author:'Han Solo'},
+    {quote:'"I find your lack of faith disturbing."',
+    author:'Darth Vader'},
+    {quote:'"Search your feelings. You know it to be true."',
+    author:'Darth Vader'},
+    {quote:'"Do, or do not. There is no try."',
+    author:'Yoda'},
+    {quote:'"It\'s a trap!"', author:'Admiral Ackbar'},
+    {quote: '"That\'s no moon..."', author:'Obi-Wan Kenobi'},
+    {quote:'"Great, kid. Don’t get cocky!"', author:'Han Solo'},
+    {quote:`"Hokey religions and ancient weapons are no 
     match for a good blaster at your side, kid."`,
+    author: 'Han Solo'},
+    {quote:`"This is the weapon of a Jedi Knight. Not as 
+    clumsy or random as a blaster. An elegant weapon... 
+    for a more civilized age."`,
+    author: 'Obi-Wan Kenobi'},
+    {quote:'"Aren\'t you a little short for a stormtrooper?"',
+    author:'Princess Leia Organa'}
   ]
-  const defaultQuote = 'A long time ago, in a galaxy far, far away...'
+  const defaultQuote = {quote:'A long time ago, in a galaxy far, far away...'}
   const [quote, setQuote] = useState(defaultQuote)
 
   useEffect(() => {
     const quoteMachine = setInterval(() => {
       setQuote(q => randomQuote(quotes))
-    }, 4500)
+    }, 5000)
     return () => clearInterval(quoteMachine)
   },[quotes])
 
   return (
-    <blockquote>
-      <p>{quote}</p>
+    <blockquote class="quote">
+      <p>{quote.quote}</p>
+      {quote.author ? <cite>- {quote.author}</cite> : null}
     </blockquote>
   )
 }

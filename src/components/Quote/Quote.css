@@ -1,31 +1,45 @@
 @media all and (min-width: 900px){
-  blockquote {
+  .quote {
     width: 50%;
     margin: 2vw auto;
-    padding: 2vw;
+    padding: 2vw 4vw;
+    row-gap: 1vw;
   }
 }
 
 @media all and (min-width: 600px) and (max-width: 899px){
-  blockquote {
+  .quote {
     width: 80%;
     margin: 2vw auto;
-    padding: 2vw;
+    padding: 2vw 4vw;
+    row-gap: 1vw;
   }
 }
 
 @media all and (max-width: 599px){
-  blockquote {
+  .quote {
     width: 70vw;
     margin: 2vh auto;
-    padding: 2vh;
+    padding: 2vh 4vh;
+    row-gap: 1vh;
   }
 }
 
-blockquote {
-  border: solid 2px rgb(30, 177, 235);
-  border-radius: 15px;
+.quote {
+  border-top: solid 2px rgb(30, 177, 235);
+  border-bottom: solid 2px rgb(30, 177, 235);
+  /* border-radius: 15px; */
   font-family: Arial;
+  display: grid;
+  grid-template-rows: auto;
+}
+
+.quote > p {
+  text-align: justify;
+}
+
+.quote > cite {
+  justify-self: right;
 }
 
 .farewell {
