@@ -3,7 +3,7 @@ import { CharactersContext } from '../../contexts/CharactersContext'
 import { Link, useParams } from 'react-router-dom'
 import Homeworld from './Homeworld'
 import CharacterProfileUrlList from './CharacterProfileUrlList'
-import { filterAttr, filterFetchList } from '../../helpers/characterProfileKeys'
+import { filterAttr, filterFetchList } from '../../helpers/characterProfileHelper'
 
 import './CharacterProfile.css'
 
