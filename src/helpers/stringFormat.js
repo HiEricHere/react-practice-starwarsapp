@@ -9,4 +9,4 @@ const capitalize = x => firstUpper(x) + getTail(x)
 
 const normalizeKey = compose(capitalize, filterUnderScore)
 
-export { normalizeKey }
+export { normalizeKey, capitalize }

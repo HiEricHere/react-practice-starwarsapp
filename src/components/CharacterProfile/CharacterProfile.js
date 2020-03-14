@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom'
 import Homeworld from './Homeworld'
 import CharacterProfileUrlList from './CharacterProfileUrlList'
 import { filterAttr, filterFetchList } from '../../helpers/characterProfileHelper'
+import { capitalize } from '../../helpers/stringFormat'
 
 import './CharacterProfile.css'
 
@@ -22,7 +23,7 @@ const CharacterProfile = () => {
             {filterAttr(char).map(([attr, value]) => (
               <div key={attr} className="attribute">
                 <h4>{attr}</h4>
-                <p>{value}</p>
+                <p>{capitalize(value)}</p>
               </div>
             ))}
             {
